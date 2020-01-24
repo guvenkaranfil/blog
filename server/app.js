@@ -26,6 +26,12 @@ mongoose
   .then(() => console.log(`${process.env.DATABASE_NAME} is started.`))
   .catch(err => console.log("databse could not started ==> ", err));
 
+// import Routes
+const authRoute = require("./src/routes/UserRoute");
+
+// route middlewares
+app.use("/api", authRoute);
+
 app.listen(process.env.PORT || 8000, err => {
   if (err) console.log("server could not started ==> ", err);
   else console.log("server is running at ", process.env.PORT || 8000);
