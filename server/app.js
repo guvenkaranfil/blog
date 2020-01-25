@@ -28,9 +28,11 @@ mongoose
 
 // import Routes
 const authRoute = require("./src/routes/UserRoute");
+const postRoute = require("./src/routes/PostRoute");
 
 // route middlewares
 app.use("/api", authRoute);
+app.use("/api", postRoute);
 
 app.listen(process.env.PORT || 8000, err => {
   if (err) console.log("server could not started ==> ", err);

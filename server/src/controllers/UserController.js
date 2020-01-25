@@ -2,6 +2,18 @@ const User = require("../models/UserModel");
 const jwt = require("jsonwebtoken"); // to generate signed token
 const expressJwt = require("express-jwt"); // for authorization check
 
+exports.userById = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User not found"
+      });
+    }
+    req.profile = user;
+    next();
+  });
+};
+
 // using promise
 exports.signup = (req, res) => {
   const user = new User(req.body);
