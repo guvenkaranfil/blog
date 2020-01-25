@@ -4,6 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
+import { read } from "../src/services/posts";
+
 const Home = ({ posts }) => (
   <div className="container">
     <Head>
@@ -29,17 +31,17 @@ const Home = ({ posts }) => (
       </div>
     </div>
 
-    {posts.map(post => (
-      <div className="blog">
+    {posts.map((post, index) => (
+      <div key={index} className="blog">
         <h2 className="blog-title">
           <Link href={post.slug}>
             <a className="blog-title-link">{post.title}</a>
           </Link>
         </h2>
         <div className="blog-text">
-          <ReactMarkdown source={post.details} />
+          <ReactMarkdown source={post.trailerContent} />
         </div>
-        <div className="blog-date">{post.date}</div>
+        <div className="blog-date">{post.createdAt}</div>
       </div>
     ))}
 
@@ -79,9 +81,9 @@ const Home = ({ posts }) => (
 
 Home.getInitialProps = async ({ req }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res = await fetch("http://localhost:3000/api/posts");
-  const json = await res.json();
-  return { posts: json.posts };
+  return read().then(response => {
+    return { posts: response };
+  });
 };
 
 export default Home;
