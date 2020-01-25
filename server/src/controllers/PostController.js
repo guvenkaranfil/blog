@@ -12,7 +12,14 @@ exports.create = (req, res) => {
   });
 };
 
-exports.read = (req, res) => {};
+exports.read = (req, res) => {
+  Post.find({}, (err, posts) => {
+    if (err) res.json({ error: err });
+    else {
+      res.json(posts);
+    }
+  });
+};
 
 exports.update = (req, res) => {};
 
