@@ -3,6 +3,7 @@ import fetch from "isomorphic-unfetch";
 import Head from "next/head";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { getPost } from "../src/services/posts";
 
 const BlogPost = ({ post, props }) => {
   console.log("props ==> ", props);
@@ -38,9 +39,9 @@ const BlogPost = ({ post, props }) => {
           </Link>
         </h2>
         <div className="blog-text">
-          <ReactMarkdown source={post.details} />
+          <ReactMarkdown source={post.content} />
         </div>
-        <div className="blog-date">{post.date}</div>
+        <div className="blog-date">{post.createdAt}</div>
       </div>
       <style jsx>{`
         .container {
@@ -81,9 +82,9 @@ BlogPost.getInitialProps = async ({ req, query }) => {
   console.log("query ==> ", query);
   console.log("req.body ==> ", req.body);
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res = await fetch(`http://localhost:3000/api/post/${query.postId}`);
-  const json = await res.json();
-  return { post: json.post };
+  const res = await getPost(query.postId);
+  console.log("res ==> ", res);
+  return { post: res };
 };
 
 export default BlogPost;

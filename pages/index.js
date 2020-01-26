@@ -34,7 +34,7 @@ const Home = ({ posts }) => (
     {posts.map((post, index) => (
       <div key={index} className="blog">
         <h2 className="blog-title">
-          <Link href={{ pathname: post.title, query: { name: "ZEIT" } }}>
+          <Link href={post._id}>
             <a className="blog-title-link">{post.title}</a>
           </Link>
         </h2>

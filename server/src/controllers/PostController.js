@@ -1,6 +1,7 @@
 const Post = require("../models/PostModel");
 
 exports.postById = (req, res, next, id) => {
+  console.log("id ==> ", id);
   Post.findById(id).exec((err, post) => {
     if (err || !post) {
       return res.status(400).json({
