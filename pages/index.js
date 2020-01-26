@@ -34,7 +34,7 @@ const Home = ({ posts }) => (
     {posts.map((post, index) => (
       <div key={index} className="blog">
         <h2 className="blog-title">
-          <Link href={post.slug}>
+          <Link href={{ pathname: post.title, query: { name: "ZEIT" } }}>
             <a className="blog-title-link">{post.title}</a>
           </Link>
         </h2>
@@ -82,6 +82,7 @@ const Home = ({ posts }) => (
 Home.getInitialProps = async ({ req }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
   return read().then(response => {
+    console.log(response);
     return { posts: response };
   });
 };

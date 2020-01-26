@@ -1,5 +1,22 @@
 const Post = require("../models/PostModel");
 
+exports.postById = (req, res, next, id) => {
+  Post.findById(id).exec((err, post) => {
+    if (err || !post) {
+      return res.status(400).json({
+        error: "post not found"
+      });
+    }
+    req.post = post;
+    next();
+  });
+};
+
+exports.getPost = (req, res) => {
+  console.log(req.post);
+  res.json(req.post);
+};
+
 exports.create = (req, res) => {
   const post = new Post(req.body);
   post.save((err, data) => {
