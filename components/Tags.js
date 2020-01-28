@@ -8,12 +8,20 @@ export default class Tags extends Component {
     return (
       <div className="d-flex row px-4">
         {tags.map((tag, index) => (
-          <div key={index} className=" border ml-2">
+          <div key={index} className="ml-2 py-1">
             <Link>
-              <a>#{tag.tagName}</a>
+              <a className="tagLink">#{tag.tagName}</a>
             </Link>
           </div>
         ))}
+        <style jsx>{`
+          .tagLink {
+          }
+          .tagLink:hover {
+            cursor: pointer;
+            font-weight: bold;
+          }
+        `}</style>
       </div>
     );
   }
