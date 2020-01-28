@@ -1,7 +1,6 @@
 const Post = require("../models/PostModel");
 
 exports.postById = (req, res, next, id) => {
-  console.log("id ==> ", id);
   Post.findById(id).exec((err, post) => {
     if (err || !post) {
       return res.status(400).json({
@@ -13,15 +12,26 @@ exports.postById = (req, res, next, id) => {
   });
 };
 
+exports.postComment = (req, res) => {
+  const { _id, name, surname, email, comment } = req.body;
+  Post.findOneAndUpdate(
+    { _id: _id },
+    {
+      $push: { comments: { name, surname, email, comment } }
+    },
+    { new: true }
+  ).exec((err, comment) => {
+    if (err) res.status(400).json(err);
+    else res.status(200).json({ post: comment });
+  });
+};
+
 // search tag title
 exports.getTagPosts = (req, res, next, tagName) => {
-  console.log("tagName ==> ", tagName);
   Post.find({ tags: tagName }).exec((err, posts) => {
-    console.log("posts ==> ", posts);
     if (err) res.json(err);
     else {
       if (posts.length === 0) {
-        console.log("posts length 0");
         return res.json({ info: "Tag Related Post Doesn't Found." });
       } else {
         return res.status(200).json(posts);
@@ -32,7 +42,6 @@ exports.getTagPosts = (req, res, next, tagName) => {
 };
 
 exports.getPost = (req, res) => {
-  console.log(req.post);
   res.json(req.post);
 };
 

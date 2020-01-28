@@ -132,7 +132,6 @@ const Home = ({ posts }) => (
 Home.getInitialProps = async ({ req }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
   return read().then(response => {
-    console.log(response);
     return { posts: response };
   });
 };

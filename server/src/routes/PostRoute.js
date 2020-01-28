@@ -9,7 +9,8 @@ const {
   postById,
   tagByName,
   getPost,
-  getTagPosts
+  getTagPosts,
+  postComment
 } = require("../controllers/PostController");
 
 const {
@@ -21,6 +22,7 @@ const {
 
 // post requests
 router.post("/post/create/:userId", requireSignin, isAuth, isAdmin, create);
+router.post("/post/comment", postComment);
 
 // get requests
 router.get("/post/read/:userId", requireSignin, isAuth, isAdmin, read);

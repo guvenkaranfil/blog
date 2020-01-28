@@ -8,7 +8,6 @@ import PostCards from "../../components/PostCards";
 import Tags from "../../components/Tags";
 
 const BlogPost = ({ post, props }) => {
-  console.log("props ==> ", props);
   return (
     <div className="">
       <Head>

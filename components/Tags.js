@@ -4,7 +4,6 @@ import Link from "next/link";
 export default class Tags extends Component {
   render() {
     const { tags } = this.props;
-    console.log("tags component");
     return (
       <div className="d-flex row px-4">
         {tags.map((tag, index) => (
