@@ -9,7 +9,7 @@ export default class Tags extends Component {
       <div className="d-flex row px-4">
         {tags.map((tag, index) => (
           <div key={index} className="ml-2 py-1">
-            <Link>
+            <Link href={`/tags/${tag.tagName}`}>
               <a className="tagLink">#{tag.tagName}</a>
             </Link>
           </div>

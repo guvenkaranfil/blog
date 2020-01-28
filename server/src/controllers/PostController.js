@@ -13,6 +13,24 @@ exports.postById = (req, res, next, id) => {
   });
 };
 
+// search tag title
+exports.getTagPosts = (req, res, next, tagName) => {
+  console.log("tagName ==> ", tagName);
+  Post.find({ tags: tagName }).exec((err, posts) => {
+    console.log("posts ==> ", posts);
+    if (err) res.json(err);
+    else {
+      if (posts.length === 0) {
+        console.log("posts length 0");
+        return res.json({ info: "Tag Related Post Doesn't Found." });
+      } else {
+        return res.status(200).json(posts);
+      }
+    }
+    next();
+  });
+};
+
 exports.getPost = (req, res) => {
   console.log(req.post);
   res.json(req.post);

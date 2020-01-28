@@ -71,7 +71,8 @@ const Home = ({ posts }) => (
               { tagName: "react" },
               { tagName: "react-native" },
               { tagName: "Flutter" },
-              { tagName: "Nodejs" }
+              { tagName: "Nodejs" },
+              { tagName: "mobile development" }
             ]}
           />
         </div>

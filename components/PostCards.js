@@ -17,7 +17,7 @@ export default class PostCards extends Component {
               >
                 <label className="postTitle">{post.title}</label>
                 <p className="postTrailerContent pl-1">{post.trailerContent}</p>
-                <Link href={post._id}>
+                <Link href={`/${post._id}`}>
                   <button className="readMoreButton">Read More</button>
                 </Link>
               </div>
