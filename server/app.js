@@ -18,7 +18,7 @@ app.use(cors());
 
 // Database connection
 mongoose
-  .connect(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`, {
+  .connect(`${process.env.DATABASE_URL}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true

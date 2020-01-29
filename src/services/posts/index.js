@@ -20,12 +20,10 @@ export const createPost = (title, content, trailerContent, tags) => {
 };
 
 export const read = () => {
-  return fetch("http://localhost:8000/api/post/read/5e2ac9a3b22bf774255127d5", {
+  return fetch("http://localhost:8000/api/post/read", {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTJhYzlhM2IyMmJmNzc0MjU1MTI3ZDUiLCJpYXQiOjE1Nzk4NzIyOTJ9.HKTF0B6Law0mAtJyKGWslCEgnA7JY9PwCM69avmSp4o"
+      "Content-Type": "application/json"
     }
   })
     .then(response => {

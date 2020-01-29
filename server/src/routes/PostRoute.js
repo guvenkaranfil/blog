@@ -25,7 +25,7 @@ router.post("/post/create/:userId", requireSignin, isAuth, isAdmin, create);
 router.post("/post/comment", postComment);
 
 // get requests
-router.get("/post/read/:userId", requireSignin, isAuth, isAdmin, read);
+router.get("/post/read", read);
 router.get("/post/:userId/:postId", requireSignin, isAuth, isAdmin, getPost);
 router.get("/tag/:tagName", getTagPosts);
 
