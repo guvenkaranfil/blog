@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 
 import Link from "next/link";
-import {
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  FormControl,
-  Form
-} from "react-bootstrap";
-import { Button } from "reactstrap";
 
 import { privateRoute } from "../../../components/PrivateRoute";
 import { createPost } from "../../../src/services/posts";
